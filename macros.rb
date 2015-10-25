@@ -52,7 +52,7 @@ module ActiveRecord
         puts "Returning #{name}"
         []
       end
-      
+      # If you don't want an instance to call method
       define_singleton_method(name) do
         puts "SELECT * FROM #{name} WHERE..."
         puts "Returning #{name}"
