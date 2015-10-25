@@ -36,3 +36,55 @@ puts Movie.object_id
 
 # In ruby there are no class methods, this is a singleton method define in the class object
 Movie.my_class_method
+
+module ActiveRecord
+  class Base
+    def self.has_many(name)
+      puts "#{self} has many #{name}"
+
+      #def posts
+      #  puts "SELECT * FROM posts WHERE..."
+      #  puts "Returning posts"
+      #  []
+      #end
+      define_method(name) do
+        puts "SELECT * FROM #{name} WHERE..."
+        puts "Returning #{name}"
+        []
+      end
+    end
+  end
+end
+
+class User < ActiveRecord::Base
+#  def self.has_many(name)
+#    puts "#{self} has many #{name}"
+
+    #def posts
+    #  puts "SELECT * FROM posts WHERE..."
+    #  puts "Returning posts"
+    #  []
+    #end
+
+#    define_method(name) do
+#      puts "SELECT * FROM #{name} WHERE..."
+#      puts "Returning #{name}"
+#      []
+#    end
+#  end
+
+  has_many :posts
+  has_many :comments
+end
+
+class Project < ActiveRecord::Base
+  has_many :tasks
+end
+
+user = User.new
+user.posts
+user.posts
+user.comments
+
+project = Project.new
+project.tasks
