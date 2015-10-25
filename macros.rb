@@ -52,6 +52,12 @@ module ActiveRecord
         puts "Returning #{name}"
         []
       end
+      
+      define_singleton_method(name) do
+        puts "SELECT * FROM #{name} WHERE..."
+        puts "Returning #{name}"
+        []
+      end
     end
   end
 end
@@ -88,3 +94,4 @@ user.comments
 
 project = Project.new
 project.tasks
+Project.tasks
